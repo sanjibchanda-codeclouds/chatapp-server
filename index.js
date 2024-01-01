@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const app = express();
-const { Server } = require("socket.io");
+const socket = require("socket.io");
 require("dotenv").config();
 
 app.use(cors());
@@ -31,7 +31,7 @@ app.use("/api/messages", messageRoutes);
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
-const io = new Server(app, {
+const io = socket(server, {
   cors: {
     origin: ["https://chatapp-react-seven.vercel.app"],
     credentials: true,
