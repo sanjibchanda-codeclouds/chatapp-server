@@ -22,6 +22,9 @@ mongoose
     console.log(err.message);
   });
 
+app.get("/", function (request, response) {
+  response.json({ success: true });
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
